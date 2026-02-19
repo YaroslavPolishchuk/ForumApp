@@ -9,7 +9,7 @@
 *.user
 *.userosscache
 *.sln.docstates
-Forum.Api/res
+Forum.Api/res/
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -17,6 +17,7 @@ Forum.Api/res
 mono_crash.*
 
 # Build results
+res/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
