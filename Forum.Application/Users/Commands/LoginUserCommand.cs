@@ -20,12 +20,12 @@ namespace Forum.Application.Users.Commands
         {
             var user = _context.Users.FirstOrDefault(u => u.UserName == request.LoginUserModel.Username);
             if (user == null)
-                return null;
+                return Result.Failure(IdentityStatus.UserNotFound.ToString());
 
             bool isValid = BCrypt.Net.BCrypt.Verify(request.LoginUserModel.Password, user.PasswordHash);
 
             if (!isValid)
-                return null;            
+                return Result.Failure(IdentityStatus.InvalidPassword.ToString()); ;
 
             var token = _jwtUtil.GenerateToken(user.Id, user.UserName, user.Role);
 

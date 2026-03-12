@@ -1,5 +1,4 @@
 ﻿using Forum.Application.Common.Interfaces.Contexts;
-using Forum.Application.Users.Models;
 using MediatR;
 
 namespace Forum.Application.Users.Commands

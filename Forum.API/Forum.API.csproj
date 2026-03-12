@@ -1,19 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
+	<Target Name="RunMyScriptAfterBuild" AfterTargets="CopyArtifactsToPublish">
+		<PropertyGroup>
+			<ScriptPath>$(ProjectDir)api_execute.ps1</ScriptPath>
+		</PropertyGroup>
+		<Exec Command="powershell.exe -ExecutionPolicy Bypass -File &quot;$(ScriptPath)&quot;"></Exec>
+	</Target>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="9.0.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Forum.Application\Forum.Application.csproj" />
-    <ProjectReference Include="..\Forum.Infrastructure\Forum.Infrastructure.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Forum.Application\Forum.Application.csproj" />
+		<ProjectReference Include="..\Forum.Infrastructure\Forum.Infrastructure.csproj" />
+	</ItemGroup>
 
 </Project>

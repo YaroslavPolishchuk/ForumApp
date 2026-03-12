@@ -17,10 +17,10 @@ namespace Forum.API.Controllers
 
             return result switch
             {
-                IdentityStatus.Success => Ok(),
-                IdentityStatus.UserAlreadyExists => Conflict("This email is already registered"),
-                IdentityStatus.NameAlreadyInUse => Conflict("This name is already in use"),
-                _ => StatusCode(500, "An unexpected error occurred.")
+                IdentityStatus.Success => Ok(new { message = "Registered sucessfull" }),
+                IdentityStatus.UserAlreadyExists => Conflict(new { message = "This email is already registered" }),
+                IdentityStatus.NameAlreadyInUse => Conflict(new { message = "This name is already in use" }),
+                _ => StatusCode(500, new { message = "An unexpected error occurred." })
             };
         }
 
