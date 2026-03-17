@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Forum.Application.Users
 {
-    public enum IdentityStatus
+    public enum PossibleResponse
     {
         Success,
         UserNotFound,

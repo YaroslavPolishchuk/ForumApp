@@ -20,12 +20,12 @@ namespace Forum.Infrastructure.Identity.Jwt
             _tokenSettings = tokenSettings;
 
             var _private = File.ReadAllText(_tokenSettings.Private);
-            using var privRsa = RSA.Create();
+            var privRsa = RSA.Create();
             privRsa.ImportFromPem(_private);            
             _privateKey = new RsaSecurityKey(privRsa);
 
             var _public = File.ReadAllText(_tokenSettings.Public);
-            using var pubRsa = RSA.Create();
+            var pubRsa = RSA.Create();
             pubRsa.ImportFromPem(_public.ToCharArray());
             _publicKey = new RsaSecurityKey(pubRsa);
         }
@@ -63,7 +63,7 @@ namespace Forum.Infrastructure.Identity.Jwt
             var token = handler.CreateToken(tokenDescriptor);            
             var jwtToken = handler.WriteToken(token);
 
-            return null;
+            return jwtToken;
         }
 
         public List<string> ValidateToken(string token)

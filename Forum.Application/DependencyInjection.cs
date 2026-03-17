@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Forum.Application.Common.Mapping;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Forum.Application
@@ -10,7 +11,7 @@ namespace Forum.Application
             
             services.AddMediatR(cfg =>
                 cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
-            services.AddAutoMapper(Assembly.GetExecutingAssembly()); 
+            //services.AddAutoMapper(typeof(UserProfile).Assembly); 
 
             //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 

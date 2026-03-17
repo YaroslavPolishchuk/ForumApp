@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Forum.Application.Common.Mapping.ForumUser;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,9 @@ namespace Forum.Application.Users.Models
 {
     public class AuthResponse
     {
-        public string Token { get; set; } = string.Empty;
+        public UserDto User { get; set; }
+        public string AccessToken { get; set; } = string.Empty;
+        public string RefreshToken { get; set; } = string.Empty;
+
     }
 }
