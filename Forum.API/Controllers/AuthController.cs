@@ -1,4 +1,5 @@
 ﻿using Forum.Application.Users.Commands;
+using Forum.Application.Users.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Forum.API.Controllers
@@ -10,14 +11,14 @@ namespace Forum.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]RegisterUserCommand command)
         {
-            var result = await Mediator.Send(command);
+            Result result = await Mediator.Send(command);
             return result.ToActionResult();            
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> LogIn([FromBody] LoginUserCommand command)
         {
-            var result = await Mediator.Send(command);
+            Result<AuthResponse> result = await Mediator.Send(command);
             return result.ToActionResult();            
         }
     }

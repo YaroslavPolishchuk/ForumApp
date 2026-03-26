@@ -4,7 +4,7 @@ namespace Forum.Application.Common.Interfaces.Contexts
 {
     public interface IAppVeloDbContext:IAppDbContext
     {
-        IQueryable<Board> Forums => Resolve<Board>();
+        IQueryable<Forum_> Forums => Resolve<Forum_>();
         IQueryable<Discussion> Discussions => Resolve<Discussion>();
         IQueryable<Message> Messages => Resolve<Message>();
         IQueryable<User> Users => Resolve<User>();

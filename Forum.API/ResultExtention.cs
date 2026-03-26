@@ -12,11 +12,11 @@ namespace Forum.API
 
             return result.Message switch
             {
-                PossibleResponse.UserAlreadyExists => new ConflictObjectResult(result.Message),
-                PossibleResponse.NameAlreadyInUse => new ConflictObjectResult(result.Message),
-                PossibleResponse.UserNotFound => new NotFoundObjectResult(result.Message),
-                PossibleResponse.InvalidPassword => new UnauthorizedObjectResult(result.Message),
-                _ => new BadRequestObjectResult(result.Message)
+                PossibleResponse.UserAlreadyExists => new ConflictObjectResult(result.Message.ToString()),
+                PossibleResponse.NameAlreadyInUse => new ConflictObjectResult(result.Message.ToString()),
+                PossibleResponse.UserNotFound => new NotFoundObjectResult(result.Message.ToString()),
+                PossibleResponse.InvalidPassword => new UnauthorizedObjectResult(result.Message.ToString()),
+                _ => new BadRequestObjectResult(result.Message.ToString())
             };
         }
 
@@ -26,9 +26,9 @@ namespace Forum.API
 
             return result.Message switch
             {
-                PossibleResponse.InvalidPassword => new UnauthorizedObjectResult(result.Message),
-                PossibleResponse.UserNotFound => new NotFoundObjectResult(result.Message),
-                _ => new BadRequestObjectResult(result.Message)
+                PossibleResponse.InvalidPassword => new UnauthorizedObjectResult(result.Message.ToString()),
+                PossibleResponse.UserNotFound => new NotFoundObjectResult(result.Message.ToString()),
+                _ => new BadRequestObjectResult(result.Message.ToString())
             };
         }
     }

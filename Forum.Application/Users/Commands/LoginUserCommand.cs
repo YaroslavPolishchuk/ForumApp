@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Forum.Application.Users.Commands
 {
     public record LoginUserCommand(string Username,
-                    string Password) : IRequest<Result>;
-    public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result>
+                    string Password) : IRequest<Result<AuthResponse>>;
+    public class LoginUserHandler : IRequestHandler<LoginUserCommand, Result<AuthResponse>>
     {
         private readonly IAppVeloDbContext _context;
         private readonly IJwtUtils _jwtUtil;
@@ -20,16 +20,16 @@ namespace Forum.Application.Users.Commands
             _context = context;
             _jwtUtil = jwtUtil;
         }
-        public async Task<Result> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+        public async Task<Result<AuthResponse>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
         {
             User? user = await _context.Users.SingleOrDefaultAsync(u => u.UserName == request.Username);
             if (user == null)
-                return Result.Failure(PossibleResponse.UserNotFound);
+                return Result.Failure<AuthResponse>(PossibleResponse.UserNotFound);
 
             bool isValid = BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash);
 
             if (!isValid)
-                return Result.Failure(PossibleResponse.InvalidPassword); 
+                return Result.Failure<AuthResponse>(PossibleResponse.InvalidPassword); 
 
             var token = _jwtUtil.GenerateToken(user.Id, user.UserName, user.Role);
             var userDto = user.MapToDto();

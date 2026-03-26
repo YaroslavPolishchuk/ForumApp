@@ -10,12 +10,21 @@ namespace Forum.Infrastructure.Persistence
         {
 
         }
-        public virtual DbSet<Board> Forums { get; set; }
+        public virtual DbSet<Forum_> Forums { get; set; }
         public virtual DbSet<Discussion> Discussions { get; set; }
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Forum_>(e =>
+            {
+                e.ToTable("forums");
+                e.Property(p => p.Id).HasColumnName("id");
+                e.Property(p => p.Description).HasColumnName("description");
+                e.Property(p => p.Title).HasColumnName("title");
+                e.Property(p => p.Answers).HasColumnName("answers");
+            });
+
             modelBuilder.Entity<User>(e =>
             {
                 e.ToTable("users");

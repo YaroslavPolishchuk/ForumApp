@@ -19,7 +19,7 @@ namespace Forum.Application.Forums.Commands.CreateBoard
 
         public async Task<int> Handle(CreateBoardCommand request, CancellationToken cancellationToken)
         {
-            var forum = new Board
+            var forum = new Forum_
             {
                 Title = request.Title,
                 Description = request.Description

@@ -23,7 +23,7 @@ namespace Forum.Infrastructure
             services.AddSingleton(config.GetSection(JwtSettings.SectionName).Get<JwtSettings>()!);            
             services.AddScoped<IAppVeloDbContext>(provider =>
                 provider.GetRequiredService<VeloContext>());
-            services.AddScoped<IBoardOwnerService, BoardOwnerService>();
+            services.AddScoped<IForumOwnerService, ForumOwnerService>();
             services.AddSingleton<IJwtSettings>(sp => sp.GetRequiredService<IOptions<JwtSettings>>().Value);
             services.AddSingleton<IJwtUtils, JwtUtils>();
 

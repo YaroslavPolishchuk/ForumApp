@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Forum.Application.Common.Services
 {
-    public class BoardOwnerService : IBoardOwnerService
+    public class ForumOwnerService : IForumOwnerService
     {
         IAppVeloDbContext _appVeloDbContext;
-        public BoardOwnerService(IAppVeloDbContext appVeloDbContext) 
+        public ForumOwnerService(IAppVeloDbContext appVeloDbContext) 
         {
-        }
-
-        public async Task<IQueryable<Board>> GetAvaliableEntities()
+            _appVeloDbContext = appVeloDbContext;
+        }        
+        public async Task<IQueryable<Forum_>> GetAvaliableEntities()
         {
             return _appVeloDbContext.Forums.AsNoTracking().AsQueryable();
         }

@@ -38,7 +38,7 @@ namespace Forum.Application.Users.Commands
             };
             await _context.Create(user, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
-            return Result.Failure(PossibleResponse.Success);
+            return Result.Success(PossibleResponse.Success);
         }
     }
 }
