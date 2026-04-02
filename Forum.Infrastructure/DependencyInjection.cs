@@ -24,6 +24,7 @@ namespace Forum.Infrastructure
             services.AddScoped<IAppVeloDbContext>(provider =>
                 provider.GetRequiredService<VeloContext>());
             services.AddScoped<IForumOwnerService, ForumOwnerService>();
+            services.AddScoped<ITopicOwnerService, TopicOwnerService>();
             services.AddSingleton<IJwtSettings>(sp => sp.GetRequiredService<IOptions<JwtSettings>>().Value);
             services.AddSingleton<IJwtUtils, JwtUtils>();
 

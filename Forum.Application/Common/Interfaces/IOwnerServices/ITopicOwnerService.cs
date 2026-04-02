@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Forum.Application.Common.Interfaces.IOwnerServices
 {
-    public interface IDiscussionOwnerService:IOwnerService<Discussion>
+    public interface ITopicOwnerService:IOwnerService<Topic>
     {
     }
 }
